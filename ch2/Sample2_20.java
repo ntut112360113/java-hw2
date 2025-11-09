@@ -1,33 +1,24 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Sample2_20 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = 
-            new BufferedReader(new InputStreamReader(System.in));
-        
-        System.out.println("請輸入5個人的分數"); 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] test = new int[5];
-        
-        for (int i = 0; i < test.length; i++) { 
-            String str = br.readLine();
-            test[i] = Integer.parseInt(str);
-        }
-        
-      
-        for (int s = 0; s < test.length - 1; s++) {
-            for (int t = s + 1; t < test.length; t++) {
-                if (test[t] > test[s]) {
-                    int tmp = test[t];
-                    test[t] = test[s];
-                    test[s] = tmp;
+
+        System.out.println("請輸入5個人的分數：");
+        for (int i = 0; i < test.length; i++)
+            test[i] = Integer.parseInt(br.readLine());
+
+        // 由大到小排序
+        for (int i = 0; i < test.length - 1; i++)
+            for (int j = i + 1; j < test.length; j++)
+                if (test[j] > test[i]) {
+                    int tmp = test[i];
+                    test[i] = test[j];
+                    test[j] = tmp;
                 }
-            }
-        }
-        
-        for (int i = 0; i < test.length; i++) {
-            System.out.println("第" + (i + 1) + "名的分數是" + test[i]);
-        }
+
+        for (int i = 0; i < test.length; i++)
+            System.out.println("第 " + (i + 1) + " 名的分數是 " + test[i]);
     }
 }
